@@ -8,4 +8,4 @@ gateway.sh
 ```
 /home/pi/Scripts/gateway.sh >/dev/null 2>/dev/null &
 ```
-Aurhor: Ron K. Irvine
+Author: Ron K. Irvine
