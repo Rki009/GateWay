@@ -41,6 +41,6 @@ while [ 1 ]; do
 		# Green LED - 1 = On
 		sudo bash -c "echo $daylight >/sys/class/leds/led0/brightness"
 	fi
-	sleep 1
+	sleep 3
 done
 
