@@ -1,4 +1,5 @@
 #!/bin/bash
+#	(C) Ron K. Irvine, 2020. All rights reserved.
 
 # daylight - daylight hours; 8:00 to 11pm
 # note sting compare is limited to EQ, GT and LT
