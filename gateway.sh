@@ -14,29 +14,31 @@ isDaylight() {
 }
 
 
+# get the gateway's IP address; empty string if no gateway
 gateway=`ip r | grep default | cut -d ' ' -f 3`
-printf "Ping Gateway: $gateway\n"
+if [ -z "$gateway" ]; then
+	printf "Gateway: Not Found...\n"
+else
+	printf "Ping Gateway: $gateway\n"
+	ping -q -w 1 -c 1 $gateway >/dev/null 2>/dev/null && echo Gateway - Ok! || echo Gateway - ERROR!
+fi
 
-ping -q -w 1 -c 1 $gateway >/dev/null 2>/dev/null && echo Gateway - Ok! || echo Gateway - ERROR!
-# ping -q -w 1 -c 1 `ip r | grep default | cut -d ' ' -f 3` > /dev/null && echo ok || echo error
-
-
-printf "Loop forever ... ^C to exit\n"
-# disable [mmc0] trigger (control)
+# disable [mmc0] trigger (control) for Green LED
 sudo bash -c "echo none >/sys/class/leds/led0/trigger"
-# Red LED - Off
+# Disable Red LED - 0 = Off
 sudo bash -c "echo 0 >/sys/class/leds/led1/brightness"
 
+printf "Loop forever ... ^C to exit\n"
 while [ 1 ]; do
 	isDaylight
 	gateway=`ip r | grep default | cut -d ' ' -f 3`
 	if [ -z "$gateway" ]; then
 		printf "Gateway - Down!\n"
-		# Green LED - Off
+		# Green LED - 0 = Off
 		sudo bash -c "echo 0 >/sys/class/leds/led0/brightness"
 	else
 		printf "Gateway - Ok!\n"
-		# Green LED - On
+		# Green LED - 1 = On
 		sudo bash -c "echo $daylight >/sys/class/leds/led0/brightness"
 	fi
 	sleep 1
