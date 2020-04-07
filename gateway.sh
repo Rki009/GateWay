@@ -25,7 +25,7 @@ fi
 
 # disable [mmc0] trigger (control) for Green LED
 sudo bash -c "echo none >/sys/class/leds/led0/trigger"
-# Disable Red LED - 0 = Off
+# disable Red power LED - 0 = Off
 sudo bash -c "echo 0 >/sys/class/leds/led1/brightness"
 
 printf "Loop forever ... ^C to exit\n"

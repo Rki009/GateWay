@@ -1,4 +1,4 @@
-# Welcome to GitHub Desktop!
+# Raspberry Pi Internet Gateway Monitor Script
 
 gateway.sh - Internet Gateway Monitor Script
 	- Bash script to verify a Raspberry Pi is connected to an Internet gateway
