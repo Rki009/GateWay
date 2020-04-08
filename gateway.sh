@@ -36,10 +36,13 @@ else
 	ping -q -w 1 -c 1 $gateway >/dev/null 2>/dev/null && echo Gateway - Ok! || echo Gateway - ERROR!
 fi
 
+# led0: Green Led - default usage is flash access indicator [mmc0]
 led0=/sys/class/leds/led0
-led1=/sys/class/leds/led1
 # disable [mmc0] trigger (control) for Green LED
 sudo bash -c "echo none >$led0/trigger"
+
+#led1: Red LED - default power on/off indicator
+led1=/sys/class/leds/led1
 # disable Red power LED - 0 = Off
 sudo bash -c "echo 0 >$led1/brightness"
 
