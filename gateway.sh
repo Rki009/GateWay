@@ -61,6 +61,7 @@ while [ 1 ]; do
 		printf "Gateway $gateway - Ok!\n"
 		# Green LED - 1 = On
 		if [ "$offAtNight" -eq "1" ]; then
+			# GREEN LED - status during the daytime, off at night
 			sudo bash -c "echo $daytime >$led0/brightness"
 		elif [ "$daytime" -eq "1" ]; then
 			# daytime - GREEN LED - On
