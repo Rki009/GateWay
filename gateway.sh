@@ -10,6 +10,9 @@
 #		Blink	- Gateway detected, night hours 
 #
 
+# Options
+offAtNight=1
+
 # daytime - daytime hours; 07:30 to 23:00
 # don't foget the leading 0 on the hour "hh:mm", 5 characters
 # note sting compare is limited to EQ, GT and LT
@@ -57,8 +60,9 @@ while [ 1 ]; do
 	else
 		printf "Gateway $gateway - Ok!\n"
 		# Green LED - 1 = On
-		# sudo bash -c "echo $daytime >$led0/brightness"
-		if [ "$daytime" -eq "1" ]; then
+		if [ "$offAtNight" -eq "1" ]; then
+			sudo bash -c "echo $daytime >$led0/brightness"
+		elif [ "$daytime" -eq "1" ]; then
 			# daytime - GREEN LED - On
 			sudo bash -c "echo 1 >$led0/brightness"
 		else
