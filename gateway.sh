@@ -27,8 +27,8 @@ isDaylight() {
 
 # use the 'ip route' command to get the gateway's IP address
 #	an empty string if no gateway
-gateway=`ip route | grep "default via" | cut -d ' ' -f 3`
-device=`ip route | grep "default via" | cut -d ' ' -f 5`
+gateway=$(ip route | grep "default via" | cut -d ' ' -f 3)
+device=$(ip route | grep "default via" | cut -d ' ' -f 5)
 if [ -z "$gateway" ]; then
 	printf "Gateway: Not Found...\n"
 else
@@ -49,7 +49,7 @@ sudo bash -c "echo 0 >$led1/brightness"
 printf "Loop forever ... ^C to exit\n"
 while [ 1 ]; do
 	isDaylight
-	gateway=`ip route | grep "default via" | cut -d ' ' -f 3`
+	gateway=$(ip route | grep "default via" | cut -d ' ' -f 3)
 	if [ -z "$gateway" ]; then
 		printf "Gateway - Down!\n"
 		# Green LED - 0 = Off
